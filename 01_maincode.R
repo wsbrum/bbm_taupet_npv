@@ -253,7 +253,7 @@ fig1 <- ggpubr::ggarrange(
 # Figure 2 #
 ############
 
-fig3 <- res_df %>%
+fig2 <- res_df %>%
   filter(group == 'All participants') %>%
   filter(sens_val %in% c(0.90,0.95,0.975)) %>%
   ggplot(aes(y = fct_reorder(predictor, 100*ppv),
@@ -273,7 +273,10 @@ fig3 <- res_df %>%
 
 fig2 <- ggpubr::set_palette(fig2, 'jama')
 
-# figure 3: pu at different sensitivity thresholds in subgroups relative to all
+##################
+# Supp. Figure x #
+##################
+
 res_df0 <- res_df2 %>%
   filter(group == 'All participants') %>%
   select(-group)
@@ -305,7 +308,7 @@ res_df3 <- res_df2 %>%
     group = factor(group, levels=c('SCD-MCI','All-cause dementia'))
   )
 
-fig3 <- res_df3 %>%
+supp_fig <- res_df3 %>%
   filter(
     sens_val %in% c(0.9, 0.95)
   ) %>%
@@ -328,12 +331,12 @@ fig3 <- res_df3 %>%
   scale_x_continuous(breaks=1:6, labels=levels(res_df3$predictor_fct)) +
   coord_flip()
 
-fig3 <- ggpubr::set_palette(fig3, 'jama')
+supp_fig <- ggpubr::set_palette(supp_fig, 'jama')
 
 
 #ggsave('manuscript/Figure1.pdf', fig1, width = 12, height=9)
 #ggsave('manuscript/Figure2.pdf', fig2, width = 12, height=4)
-#ggsave('manuscript/Supp_FigureX.pdf', fig3, width = 8, height=6)
+#ggsave('manuscript/Supp_FigureX.pdf', supp_fig, width = 8, height=6)
 
 
 
